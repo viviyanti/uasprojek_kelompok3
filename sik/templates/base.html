@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>SIMIKE GAMBESI</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{{url_for('static', filename='assets/css/main.css')}}" />
+		<noscript><link rel="stylesheet" href="{{url_for('static', filename='assets/css/noscript.css')}}" /></noscript>
+	</head>
+	<style type="text/css">
+		#main > header 
+		{
+			padding: 12em 0 10em 0 ;
+			background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{{ url_for('static',filename='images/banner.jpg') }}");
+			background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{{ url_for('static',filename='images/banner.jpg') }}");
+			background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{{ url_for('static',filename='images/banner.jpg') }}");
+			background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{{ url_for('static',filename='images/banner.jpg') }}");
+			background-attachment: fixed;
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			text-align: center;
+		}
+	</style>
+
+	<body class="is-preload">
+		<div id="page-wrapper">
+			<header id="header">
+				<h1><a href="{{url_for('vmahasiswa.landing')}}">Simike Gambesi</a></h1>
+				<nav id="nav">
+					<ul>
+						<li class="special">
+							<a href="#menu" class="menuToggle"><span>Menu</span></a>
+							<div id="menu">
+								<ul>
+									<li><a href="{{url_for('vmahasiswa.landing')}}">Home</a></li>
+									{% if current_user.is_authenticated %}
+										<li><a href="{{url_for('vmahasiswa.suratpermohonan')}}">Surat Permohonan</a></li>
+										<li><a href="{{url_for('vmahasiswa.akun')}}">Account</a></li>
+										<li><a href="{{url_for('vmahasiswa.logout')}}">Logout</a></li>
+									{% else %}
+										<li><a href="{{url_for('vmahasiswa.registrasi')}}">Sign Up</a></li>
+										<li><a href="{{url_for('vmahasiswa.loginuser')}}">Log In</a></li>
+									{% endif %}
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</nav>
+			</header>
+
+			<article id="main">
+				<header>
+					<h2>KELURAHAN GAMBESI</h2>
+					<p>SIMIKE (Sistem Informasi Kelurahan) Gambesi</p>
+				</header>
+
+				{% block content %}
+    
+    			{% endblock %}
+
+			</article>
+
+			<footer id="footer">
+				<ul class="copyright">
+					<li>&copy; SIMIKE GAMBESI 2020</li>
+				</ul>
+			</footer>
+
+		</div>
+
+		<script src="{{url_for('static', filename='assets/js/jquery.min.js')}}"></script>
+		<script src="{{url_for('static', filename='assets/js/jquery.scrollex.min.js')}}"></script>
+		<script src="{{url_for('static', filename='assets/js/jquery.scrolly.min.js')}}"></script>
+		<script src="{{url_for('static', filename='assets/js/browser.min.js')}}"></script>
+		<script src="{{url_for('static', filename='assets/js/breakpoints.min.js')}}"></script>
+		<script src="{{url_for('static', filename='assets/js/util.js')}}"></script>
+		<script src="{{url_for('static', filename='assets/js/main.js')}}"></script>
+
+	</body>
+</html>

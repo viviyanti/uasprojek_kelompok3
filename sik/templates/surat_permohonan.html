@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="wrapper style5">
+  <div class="inner">
+    <section>
+      <h4>Form Surat Permohonan</h4>
+      <p><i>SK Tidak Mampu & SK Balum Nikah</i></p><br>
+      <form method="post" action="#">
+        {{ form.hidden_tag() }}
+        <div class="row gtr-uniform">
+          <div class="col-6 col-12-xsmall">
+            {{ form.nama.label(class="form-control-label") }}
+            {{ form.nama(class='form-control form-control-lg') }}
+          </div>
+          <div class="col-6 col-12-xsmall">
+            {{ form.no_hp.label(class="form-control-label") }}
+            {{ form.no_hp(class='form-control form-control-lg') }}
+          </div>
+          <div class="col-12">
+            <div class="col-6 col-12-xsmall">
+              {{ form.kategori.label(class="form-control-label") }}
+              {{ form.kategori(class='form-control form-control-lg') }}
+            </div>
+          </div>
+          <div class="col-12">
+            <ul class="actions">
+              <li>{{ form.submit(class="btn btn-outline-info") }}</li>
+              <li><input type="reset" value="Reset" /></li>
+            </ul>
+          </div>
+        </div>
+      </form>
+    </section>
+  </div>
+</section>
+{% endblock content%}

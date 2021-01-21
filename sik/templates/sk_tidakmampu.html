@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="wrapper style5">
+  <div class="inner">
+    <section>
+      <h4>Form Surat Keterangan Tidak Mampu</h4>
+      <form method="post" action="#">
+        {{ form.hidden_tag() }}
+        <div class="row gtr-uniform">
+          <div class="col-6 col-12-xsmall">
+            {{ form.nama.label(class="form-control-label") }}
+            {{ form.nama(class='form-control form-control-lg') }}
+          </div>
+          <div class="col-6 col-12-xsmall">
+            {{ form.nik.label(class="form-control-label") }}
+            {{ form.nik(class='form-control form-control-lg') }}
+          </div>
+          <div class="col-6 col-12-xsmall">
+            {{ form.ttl.label(class="form-control-label") }}
+            {{ form.ttl(class='form-control form-control-lg') }}
+          </div>
+          <div class="col-6 col-12-xsmall">
+            {{ form.jenis_kelamin.label(class="form-control-label") }}
+            {{ form.jenis_kelamin(class='form-control form-control-lg') }}
+          </div>
+          <div class="col-6 col-12-xsmall">
+            {{ form.agama.label(class="form-control-label") }}
+            {{ form.agama(class='form-control form-control-lg') }}
+          </div>
+          <div class="col-6 col-12-xsmall">
+            {{ form.pekerjaan.label(class="form-control-label") }}
+            {{ form.pekerjaan(class='form-control form-control-lg') }}
+          </div>
+          <div class="col-12">
+            <div class="col-6 col-12-xsmall">
+              {{ form.kewarganegaraan.label(class="form-control-label") }}
+              {{ form.kewarganegaraan(class='form-control form-control-lg') }}
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="col-6 col-12-xsmall">
+              {{ form.alamat.label(class="form-control-label") }}
+              {{ form.alamat(class='form-control form-control-lg') }}
+            </div>
+          </div>
+          <div class="col-12">
+            <ul class="actions">
+              <li>{{ form.submit(class="btn btn-outline-info") }}</li>
+              <li><input type="reset" value="Reset" /></li>
+            </ul>
+          </div>
+        </div>
+      </form>
+    </section>
+  </div>
+</section>
+{% endblock content%}

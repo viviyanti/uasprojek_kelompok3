@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>SIMIKE GAMBESI</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{{url_for('static', filename='assets/css/main.css')}}" />
+		<noscript><link rel="stylesheet" href="{{url_for('static', filename='assets/css/noscript.css')}}" /></noscript>
+	</head>
+	<style type="text/css">
+		body.landing #page-wrapper 
+		{
+			background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{{ url_for('static',filename='images/banner.jpg') }}");
+			background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{{ url_for('static',filename='images/banner.jpg') }}");
+			background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{{ url_for('static',filename='images/banner.jpg') }}");
+			background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{{ url_for('static',filename='images/banner.jpg') }}");
+			background-attachment: fixed;
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			padding-top: 0;
+		}
+
+		body.is-mobile.landing #banner,
+		body.is-mobile.landing .wrapper.style4 
+		{
+			background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{{ url_for('static',filename='images/banner.jpg') }}");
+			background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{{ url_for('static',filename='images/banner.jpg') }}");
+			background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{{ url_for('static',filename='images/banner.jpg') }}");
+			background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{{ url_for('static',filename='images/banner.jpg') }}");
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+	</style>
+
+	<body class="landing is-preload">
+		<div id="page-wrapper">
+			<header id="header" class="alt">
+				<h1><a href="index.html">Simike Gambesi</a></h1>
+				<nav id="nav">
+					<ul>
+						<li class="special">
+							<a href="#menu" class="menuToggle"><span>Menu</span></a>
+							<div id="menu">
+								<ul>
+									<li><a href="{{url_for('vmahasiswa.landing')}}">Home</a></li>
+									{% if current_user.is_authenticated %}
+										<li><a href="{{url_for('vmahasiswa.suratpermohonan')}}">Surat Permohonan</a></li>
+										<li><a href="{{url_for('vmahasiswa.akun')}}">Account</a></li>
+										<li><a href="{{url_for('vmahasiswa.logout')}}">Logout</a></li>
+									{% else %}
+										<li><a href="{{url_for('vmahasiswa.registrasi')}}">Sign Up</a></li>
+										<li><a href="{{url_for('vmahasiswa.loginuser')}}">Log In</a></li>
+									{% endif %}
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</nav>
+			</header>
+
+			<section id="banner">
+				<div class="inner">
+					<h2>KELURAHAN GAMBESI</h2>
+					<p>SIMIKE<br />
+					(Sistem Informasi Kelurahan) <br />Gambesi</p>
+				</div>
+				<a href="#one" class="more scrolly">Read More</a>
+			</section>
+
+			<section id="one" class="wrapper style1 special">
+				<div class="inner">
+					<header class="major">
+						<h2>Information</h2><br>
+						{% for info in informasi %}	
+							<p>{{ info.title }}</p>
+							<p>{{ info.konten|striptags }} <br><br>{{ info.ttd }}</p>
+							<hr>
+						{% endfor %}
+					</header>
+				</div>
+			</section>
+
+			<section id="one" class="wrapper style2 special">
+				<div class="inner">
+					<header class="major">
+						<h2>Visi & Misi Kelurahan Gambesi</h2><br>
+						<p><b>VISI</b></p>
+						<i>
+							<p>Maju – Sejahtera – Agamais - Inovatif</p>
+						</i><br><br>
+						<p><b>MISI</b></p>
+						<i>
+							<p>Meningkatkan Profesionalisme aparatur kelurahan dan hubungan Masyarakat dalam rangka optimalisasi pelayanan public.</p><br>
+					        <p>Mengembangkan perekonomian Masyarakat di tingkat kelurahan yang sehat, cerdas, trampil dan produktif.</p><br>
+					        <p>Meningkatkan Kesehatan dan Pendidikan Masyarakat.</p><br>
+					        <p>Mewujudkan tatanan kehidupan Masyarakat yang beragama, berbudaya, kreatif, aman dan tertib.</p>
+				    	</i>
+					</header>
+				</div>
+			</section>
+
+			<section id="three" class="wrapper style3 special">
+				<div class="inner">
+					<h5>Populasi Penduduk</h5><br>
+					<div class="table-wrapper">
+						<table class="alt">
+							<thead>
+								<tr align="center">
+									<th><br>Bulan</th>
+									<th><br>Jumlah Laki-laki</th>
+									<th><br>Jumlah Perempuan</th>
+									<th><br>Jumlah KK</th>
+									<th><br>Jumlah Jiwa</th>
+									<th><br>Meninggal</th>
+									<th><br>Lahir</th>
+									<th><br>Pindah</th>
+									<th><br>Keluar</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for warga in penduduk %}
+								<tr>
+									<td>{{ warga.waktu }}</td>
+									<td>{{ warga.pria }}</td>
+									<td>{{ warga.wanita }}</td>
+									<td>{{ warga.kk }}</td>
+									<td>{{ warga.jj }}</td>
+									<td>{{ warga.mati }}</td>
+									<td>{{ warga.lahir }}</td>
+									<td>{{ warga.pindah }}</td>
+									<td>{{ warga.keluar }}</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</section>
+
+			<footer id="footer">
+				<ul class="copyright">
+					<li>&copy; SIMIKE GAMBESI 2020</li>
+				</ul>
+			</footer>
+
+		</div>
+		
+			<script src="{{url_for('static', filename='assets/js/jquery.min.js')}}"></script>
+			<script src="{{url_for('static', filename='assets/js/jquery.scrollex.min.js')}}"></script>
+			<script src="{{url_for('static', filename='assets/js/jquery.scrolly.min.js')}}"></script>
+			<script src="{{url_for('static', filename='assets/js/browser.min.js')}}"></script>
+			<script src="{{url_for('static', filename='assets/js/breakpoints.min.js')}}"></script>
+			<script src="{{url_for('static', filename='assets/js/util.js')}}"></script>
+			<script src="{{url_for('static', filename='assets/js/main.js')}}"></script>
+
+	</body>
+</html>

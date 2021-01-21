@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>ACCOUNT</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='akun/vendor/bootstrap/css/bootstrap.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='akun/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='akun/fonts/iconic/css/material-design-iconic-font.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='akun/vendor/animate/animate.css')}}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='akun/vendor/css-hamburgers/hamburgers.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='akun/vendor/animsition/css/animsition.min.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='akun/vendor/select2/select2.min.css')}}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='akun/vendor/daterangepicker/daterangepicker.css')}}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='akun/css/util.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='akun/css/main.css')}}">
+
+<!--CSS FOR HEADER-->
+	<link rel="stylesheet" href="{{url_for('static', filename='assets/css/main.css')}}" />
+	<noscript><link rel="stylesheet" href="{{url_for('static', filename='assets/css/noscript.css')}}" /></noscript>
+
+</head>
+<body>
+	<header id="header">
+		<h1><a href="{{url_for('vmahasiswa.landing')}}">Simike Gambesi</a></h1>
+		<nav id="nav">
+			<ul>
+				<li class="special">
+					<a href="#menu" class="menuToggle"><span>Menu</span></a>
+					<div id="menu">
+						<ul>
+							<li><a href="{{url_for('vmahasiswa.landing')}}">Home</a></li>
+							{% if current_user.is_authenticated %}
+								<li><a href="{{url_for('vmahasiswa.suratpermohonan')}}">Surat Permohonan</a></li>
+								<li><a href="{{url_for('vmahasiswa.akun')}}">Account</a></li>
+								<li><a href="{{url_for('vmahasiswa.logout')}}">Logout</a></li>
+							{% else %}
+								<li><a href="{{url_for('vmahasiswa.registrasi')}}">Sign Up</a></li>
+								<li><a href="{{url_for('vmahasiswa.loginuser')}}">Log In</a></li>
+							{% endif %}
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+<section id="one" class="wrapper style2 special">
+	<div class="inner">
+		<div class="major">
+			<img class="login100-form-avatar rounded-circle account-img" src="{{ img }}"><br />
+			<div class="media-body">
+				<p class="text-secondary">{{current_user.username}}</p>
+				<p class="text-secondary">{{current_user.email}}</p>
+			</div>
+		</div>
+<!-- ==================BATAS next copyan dari file registrasi================= -->
+		<form action="" method="POST" enctype="multipart/form-data" class="login100-form validate-form">
+			{{ form.hidden_tag() }}
+			<fieldset class="form-group">
+				<div class="form-group wrap-input100 validate-input m-t-30 m-b-20" align="left">
+					{{ form.username.label(class="form-control-label") }}
+
+					<!-- =========ERROR=========== -->
+					{% if form.username.errors %}
+					{{ form.username (class='form-control form-control-lg is-invalid')}}
+					
+					<div class="invalid-feedback">
+						{% for error in form.username.errors %}
+						<span> {{ error }}</span>
+						{% endfor %}
+
+					</div>
+					{% else %}
+					{{ form.username(class='form-control form-control-lg') }}
+					{% endif %}
+				</div>
+				<!--=================================================-->
+				<div class="form-group wrap-input100 validate-input m-t-30 m-b-20" align="left">
+					{{ form.email.label(class="form-control-label") }}
+
+					<!-- =========ERROR=========== -->
+					{% if form.email.errors %}
+					{{ form.email (class='form-control form-control-lg is-invalid')}}
+				
+					<div class="invalid-feedback">
+						{% for error in form.email.errors %}
+						<span> {{ error }}</span>
+						{% endfor %}
+					</div>
+					{% else %}
+					{{ form.email(class='form-control form-control-lg') }}
+					{% endif %}
+				</div>
+				
+					<div class="form-group" align="left">
+						{{ form.foto.label() }}
+						{{ form.foto(class='form-control-file') }}
+						{% if form.foto.errors %}
+							{% for error in form.foto.errors %}
+								<span class="text-danger">{{error}}</span></br>
+							{% endfor %}
+						{% endif %}
+					</div>
+			</fieldset>
+			<div class="form-group">
+				{{ form.submit(class="btn btn-outline-info") }}
+			</div>
+		</form>  
+	</div>
+</section>
+
+	<div id="dropDownSelect1"></div>
+	
+<!--===============================================================================================-->
+	<script src="{{url_for('static', filename='akun/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
+<!--===============================================================================================-->
+	<script src="{{url_for('static', filename='akun/vendor/animsition/js/animsition.min.js')}}"></script>
+<!--===============================================================================================-->
+	<script src="{{url_for('static', filename='akun/vendor/bootstrap/js/popper.js')}}"></script>
+	<script src="{{url_for('static', filename='akun/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+<!--===============================================================================================-->
+	<script src="{{url_for('static', filename='akun/vendor/select2/select2.min.js')}}"></script>
+<!--===============================================================================================-->
+	<script src="{{url_for('static', filename='akun/vendor/daterangepicker/moment.min.js')}}"></script>
+	<script src="{{url_for('static', filename='akun/vendor/daterangepicker/daterangepicker.js')}}"></script>
+<!--===============================================================================================-->
+	<script src="{{url_for('static', filename='akun/vendor/countdowntime/countdowntime.js')}}"></script>
+<!--===============================================================================================-->
+	<script src="{{url_for('static', filename='akun/js/main.js')}}"></script>
+
+<!--SCRIPT FOR HEADER-->
+	<script src="{{url_for('static', filename='assets/js/jquery.min.js')}}"></script>
+	<script src="{{url_for('static', filename='assets/js/jquery.scrollex.min.js')}}"></script>
+	<script src="{{url_for('static', filename='assets/js/jquery.scrolly.min.js')}}"></script>
+	<script src="{{url_for('static', filename='assets/js/browser.min.js')}}"></script>
+	<script src="{{url_for('static', filename='assets/js/breakpoints.min.js')}}"></script>
+	<script src="{{url_for('static', filename='assets/js/util.js')}}"></script>
+	<script src="{{url_for('static', filename='assets/js/main.js')}}"></script>
+</body>
+</html>
